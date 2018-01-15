@@ -96,4 +96,5 @@ class TaskController extends Controller
         $this->addFlash('notice', 'Task Deleted');
         return $this->redirectToRoute('task');
     }
+    
 }
