@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h2 class="page-header" style="margin-top:20px;marin-bottom:20px;">{{ todo.name }}</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item">Category: {{ todo.category }}</li>
+        <li class="list-group-item">Priority: {{ todo.priority }}</li>
+        <li class="list-group-item">Due Date: {{  todo.dueDate | date('d/m/Y H:i:s') }}</li>
+        <li class="list-group-item">Created: {{  todo.createDate | date('d/m/Y H:i:s') }}</li>
+    </ul>
+
+    <p>{{ todo.description }}</p>
+
+    <a class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px;" href="/">Back to TODOs</a>
+{% endblock %}

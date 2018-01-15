@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2 class="page-header" style="margin-top:20px; margin-bottom:20px;">{{ page }}</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <div class="clearfix">
+        <a href="/task" class="btn btn-secondary float-right"> Close</a>
+    </div>
+{% endblock %}

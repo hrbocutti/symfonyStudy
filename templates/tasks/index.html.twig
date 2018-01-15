@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h2 class="page-header" style="margin-top:20px; margin-bottom:20px;">{{ page }}</h2>
+    <table class="table table-striped" style="margin-top: 20px;">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Time spent</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% set totalSpent = 0 %}
+        {% set goalTime = 480 %}
+        {% for task in tasks %}
+
+            <tr>
+                <th scope="row">{{ task.id }}</th>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ (task.timeSpent > 1)? task.timeSpent ~ ' minutes' : task.timeSpent ~ ' minute' }} </td>
+                <td>
+                    <a href="/task/edit/{{ task.id }}" class="btn btn-primary">edit</a>
+                    <a href="/task/delete/{{ task.id }}" class="btn btn-danger">delete</a>
+                </td>
+            </tr>
+
+            {% set totalSpent = totalSpent + task.timeSpent %}
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <div class="clearfix">
+        <span class="float-right">Time Spent Total: {{ ( totalSpent > 1 )? totalSpent ~ ' minutes' : totalSpent ~ ' minute' }}</span>
+    </div>
+    <div class="clearfix">
+        {% set timeLeft = goalTime - totalSpent %}
+        <span class="float-right">Time Left: {{ (timeLeft > 1)? timeLeft ~ ' minutes': timeLeft ~ ' minute' }}</span>
+    </div>
+
+
+    <div class="col-sm-12" style="margin-top:20px; margin-bottom:20px;">
+        <a href="/task/create" class="btn btn-primary">New Task</a>
+    </div>
+{% endblock %}
